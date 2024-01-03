@@ -43,7 +43,8 @@ export async function middleware(request: NextRequest) {
     const { data } = await supabase.auth.getSession();
     console.log(data.session?.user.user_metadata);
     if (data.session) {
-        if (data.session.user.user_metadata.role !== "admin") {
+        const { data: userInfo } = await supabase.from("users").select("*").eq("id", data.session?.user.id!).single();
+        if (userInfo.role !== "admin") {
             return NextResponse.redirect(new URL("/", request.url));
         }
     } else {
