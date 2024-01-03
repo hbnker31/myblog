@@ -8,7 +8,7 @@ export type IBlogDetail = {
     blog_content: {
         content: string;
         created_at: string;
-        id: string;
+        blog_id: string;
     } | null;
 } | null;
 
