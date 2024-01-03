@@ -3,28 +3,28 @@ import Image from "next/image";
 import React from "react";
 import BlogContent from "./components/BlogContent";
 
-// export async function generateStaticParams() {
-//     const { data: blog } = await fetch(`${process.env.SITE_URL}/api/blog?id=*`).then((res) => res.json());
-//     return blog;
-// }
+export async function generateStaticParams() {
+    const { data: blog } = await fetch(`${process.env.SITE_URL}/api/blog?id=*`).then((res) => res.json());
+    return blog;
+}
 
-// export async function generateMetadata({ params }: { params: { id: string } }) {
-//     const { data: blog } = (await fetch(`${process.env.SITE_URL}/api/blog?id=${params.id}`).then((res) => res.json())) as { data: IBlog };
-//     return {
-//         title: blog?.title,
-//         authors: {
-//             name: "My personal Blog"
-//         },
-//         openGraph: {
-//             title: blog?.title,
-//             url: `${process.env.SITE_URL}/blog/${params.id}`,
-//             siteName: "Personal Blog",
-//             images: blog?.image_url,
-//             type: "website"
-//         },
-//         keywords: ["blog", "web development", "reactjs"]
-//     };
-// }
+export async function generateMetadata({ params }: { params: { id: string } }) {
+    const { data: blog } = (await fetch(`${process.env.SITE_URL}/api/blog?id=${params.id}`).then((res) => res.json())) as { data: IBlog };
+    return {
+        title: blog?.title,
+        authors: {
+            name: "My personal Blog"
+        },
+        openGraph: {
+            title: blog?.title,
+            url: `${process.env.SITE_URL}/blog/${params.id}`,
+            siteName: "Personal Blog",
+            images: blog?.image_url,
+            type: "website"
+        },
+        keywords: ["blog", "web development", "reactjs"]
+    };
+}
 
 export default async function page({ params }: { params: { id: string } }) {
     const { data: blog } = (await fetch(`${process.env.SITE_URL}/api/blog?id=${params.id}`).then((res) => res.json())) as { data: IBlog };
